@@ -14,7 +14,7 @@ func Exit() -> void:
 
 ## _process updates the state
 func Process(_delta: float) -> State:
-	if player.direction != Vector2.ZERO:
+	if player.direction != Vector2.ZERO: #Da ist Bewegung im Spiel
 		return walk
 	player.velocity = Vector2.ZERO
 	return null
