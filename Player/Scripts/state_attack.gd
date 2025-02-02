@@ -11,6 +11,8 @@ var attacking: bool = false
 @onready var walk: State = $"../Walk"
 @onready var idle: State = $"../Idle"
 
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+
 
 ## Enters the state
 func Enter() -> void: 
@@ -23,12 +25,17 @@ func Enter() -> void:
 	
 	animation_player.animation_finished.connect(EndAttack)
 	attacking = true
+	
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
+	
 	pass
 
 ## Exits the state
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
+	hurt_box.monitoring = false
 	pass
 
 ## _process updates the state
