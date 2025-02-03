@@ -1,7 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5k2m4prvmglp"]
+[gd_scene load_steps=16 format=3 uid="uid://c5k2m4prvmglp"]
 
 [ext_resource type="Texture2D" uid="uid://dvq2inn3irscg" path="res://Enemies/Slime/Slime.png" id="1_3qmtd"]
 [ext_resource type="Texture2D" uid="uid://douhqgj6jxsex" path="res://Player/Sprites/Shadow.png" id="1_epi8w"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_i3dph"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="4_o1qip"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_state_idle.gd" id="5_qlhh8"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_state_wander.gd" id="6_8270e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4mfg1"]
 radius = 5.0
@@ -219,6 +223,7 @@ _data = {
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 256
 collision_mask = 16
+script = ExtResource("1_i3dph")
 
 [node name="ShadowSprite2D2" type="Sprite2D" parent="."]
 modulate = Color(0.541176, 0.211765, 0, 1)
@@ -238,3 +243,16 @@ shape = SubResource("CapsuleShape2D_4mfg1")
 libraries = {
 "": SubResource("AnimationLibrary_bi80l")
 }
+autoplay = "idle_down"
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("4_o1qip")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state")]
+script = ExtResource("5_qlhh8")
+after_idle_state = NodePath("../Wander")
+
+[node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_8270e")
+state_animation_duration = 0.7
+next_state = NodePath("../Idle")

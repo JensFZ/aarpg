@@ -1,4 +1,7 @@
-class_name Player extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
+
+#signal direction_changed( new_direction : Vector2 )
+#signal enemy_damaged() 
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
@@ -7,31 +10,32 @@ var direction: Vector2 = Vector2.ZERO
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var state_machine: PlayerStateMachine = $StateMachine
 
 signal DirectionChanged( new_Direction : Vector2 )
+@onready var state_machine: EnemyStateMachine = $EnemyStateMachine
+
+@export var hp: int = 3
+
+var player: Player
+var invulnerable: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Statemachine vorbereiten
-	PlayerManager.player = self
-	state_machine.Initialize(self)	
+	state_machine.initialize( self )
+	player = PlayerManager.player
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	direction = Vector2(
-		Input.get_axis("left", "right"),
-		Input.get_axis("up", "down")
-	).normalized()
 	pass
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()	
-	
+	move_and_slide()
 
-func SetDirection() -> bool: 
+
+func SetDirection( _new_direction: Vector2 ) -> bool: 
+	direction = _new_direction
 	
 	if direction == Vector2.ZERO:
 		return false
@@ -47,9 +51,9 @@ func SetDirection() -> bool:
 		return false
 	
 	cardinal_direction = new_direction
-	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	DirectionChanged.emit( new_direction )
-	
+	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+		
 	return true
 
 func UpdateAnimation(state : String) -> void:

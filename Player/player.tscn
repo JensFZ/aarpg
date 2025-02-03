@@ -559,3 +559,5 @@ max_polyphony = 4
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("10_ghpvw")
+
+[node name="EnemyStateMachine" type="Node2D" parent="."]
