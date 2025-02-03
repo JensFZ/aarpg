@@ -11,7 +11,7 @@ var attacking: bool = false
 @onready var walk: State = $"../Walk"
 @onready var idle: State = $"../Idle"
 
-@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 
 ## Enters the state
