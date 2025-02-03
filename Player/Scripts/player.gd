@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
@@ -30,22 +31,24 @@ func _physics_process(_delta: float) -> void:
 	
 
 func SetDirection() -> bool: 
-	var new_direction : Vector2 = cardinal_direction
 	
 	if direction == Vector2.ZERO:
 		return false
-	
-	if direction.y == 0:
-		new_direction = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	elif direction.x == 0:
-		new_direction = Vector2.UP if direction.y < 0 else Vector2.DOWN
-	
+
+	# direction + cardinal_direction * 0.1 -> die erste Taste die gedrückt wird, gewint die richtung bei diagonal
+	# Angle * Tau -> 0..1 für 0° bis 360°
+	# dann * DIR_4.Size -> Werte von 0 bis 3
+	# Round -> z.B. ab 3,5 -> Wert 4
+	var direction_id : int = int( round( ( direction + cardinal_direction * 0.1 ).angle() / TAU * DIR_4.size() ) )
+	var new_direction = DIR_4 [ direction_id ]
+
 	if new_direction == cardinal_direction:
 		return false
 	
 	cardinal_direction = new_direction
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	DirectionChanged.emit( new_direction )
+	
 	return true
 
 func UpdateAnimation(state : String) -> void:
