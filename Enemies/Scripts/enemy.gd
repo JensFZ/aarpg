@@ -1,28 +1,29 @@
 class_name Enemy extends CharacterBody2D
 
-#signal direction_changed( new_direction : Vector2 )
-#signal enemy_damaged() 
+@export var hp: int = 3
+signal direction_changed( new_direction : Vector2 )
+signal enemy_damaged() 
+signal enemy_destroyed()
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
+var player: Player
+var invulnerable: bool = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
-
-signal DirectionChanged( new_Direction : Vector2 )
+@onready var hit_box: HitBox = $HitBox
 @onready var state_machine: EnemyStateMachine = $EnemyStateMachine
 
-@export var hp: int = 3
 
-var player: Player
-var invulnerable: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	state_machine.initialize( self )
 	player = PlayerManager.player
+	hit_box.damaged.connect( _take_damage )
 	pass # Replace with function body.
 
 
@@ -51,7 +52,7 @@ func SetDirection( _new_direction: Vector2 ) -> bool:
 		return false
 	
 	cardinal_direction = new_direction
-	DirectionChanged.emit( new_direction )
+	direction_changed.emit( new_direction )
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 		
 	return true
@@ -67,3 +68,13 @@ func AnimDirection() -> String:
 		return "up"
 	else:
 		return "side"
+
+func _take_damage( damage:int ) -> void:
+	if invulnerable == true:
+		return
+		
+	hp -= damage
+	if hp > 0:
+		enemy_damaged.emit()
+	else:
+		enemy_destroyed.emit()
