@@ -44,8 +44,11 @@ jobs:
     name: Upload to Webspace
     
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: ./build-artifacts
 
       - name: Setup SSH Key
         run: |
@@ -61,5 +64,5 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ${{ steps.export.outputs.archive_directory }}/Web/*
+          source: ./build-artifacts/Web/*
           target: ./
