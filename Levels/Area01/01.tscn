@@ -14,16 +14,11 @@ tile_map_data = PackedByteArray("AAD+//7/AAAOAAUAAAD+////AAAOAAUAAAD+/wAAAAAOAAU
 [node name="PlayerSpawn" parent="." instance=ExtResource("2_01acn")]
 position = Vector2(306, 358)
 
-[node name="LevelTransition" parent="." instance=ExtResource("4_wpyrb")]
-position = Vector2(273, 448)
-size = 5
-side = 3
-
 [node name="LevelTransition3" parent="." instance=ExtResource("4_wpyrb")]
-position = Vector2(273, 448)
+position = Vector2(272, 448)
 size = 5
 side = 3
 
 [node name="LevelTransition2" parent="." instance=ExtResource("4_wpyrb")]
-position = Vector2(640, 191)
+position = Vector2(640, 192)
 side = 1

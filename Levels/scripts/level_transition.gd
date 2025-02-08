@@ -18,7 +18,9 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 		side = _value
 		_update_area()
 		
-@export var snap_to_grid : bool = false 
+@export var snap_to_grid : bool = false :
+	set (_value):
+		_snap_to_grid()
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
@@ -48,3 +50,6 @@ func _update_area() -> void:
 	collision_shape.shape.size = new_rect
 	collision_shape.position = new_position
 	
+func _snap_to_grid() -> void:
+	position.x = round( position.x / 16 ) * 16
+	position.y = round( position.y / 16 ) * 16
