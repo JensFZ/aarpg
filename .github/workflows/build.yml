@@ -29,6 +29,7 @@ jobs:
         with:
           name: build-artifacts
           path: ${{ steps.export.outputs.archive_directory }}
+          retention-days: 7
 
       - name: create release
         uses: ncipollo/release-action@v1.14.0
@@ -45,7 +46,7 @@ jobs:
     
     steps:
       - name: Download Build Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: ./build-artifacts
@@ -56,7 +57,8 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          ls ${{ steps.export.outputs.archive_directory }}
+          
+          ls ./build-artifacts
 
       - name: Upload Web Build via SCP
         uses: appleboy/scp-action@v0.1.7
