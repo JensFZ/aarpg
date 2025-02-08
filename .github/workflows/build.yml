@@ -8,16 +8,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  # Kann auch windows-latest sein, falls nötig
-
+    permissions: write-all
+    name: Build Game
+    
     steps:
       - name: Repository klonen
         uses: actions/checkout@v4
 
       - name: Godot installieren
-        uses: firebelley/godot-action@v2
+        id: export
+        uses: firebelley/godot-export@v6.0.0
         with:
-          version: 4.3  # Verwende die passende Godot-Version
-          export_templates: true  # Benötigt, um das Projekt zu exportieren
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
 
       - name: Exportieren des Godot-Projekts
         run: |
