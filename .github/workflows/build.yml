@@ -1,0 +1,34 @@
+name: Build Godot Project
+
+on:
+  push:
+    branches:
+      - main  # Oder dein Entwicklungsbranch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Kann auch windows-latest sein, falls nötig
+
+    steps:
+      - name: Repository klonen
+        uses: actions/checkout@v4
+
+      - name: Godot installieren
+        uses: firebelley/godot-action@v2
+        with:
+          version: 4.3  # Verwende die passende Godot-Version
+          export_templates: true  # Benötigt, um das Projekt zu exportieren
+
+      - name: Exportieren des Godot-Projekts
+        run: |
+          mkdir -p Build
+	  mkdir -p Build/Web
+	  mkdir -p Build/Windows
+	  godot --headless --export-release "Web" Build/Web/index.html
+          godot --headless --export-release "Windows Desktop" Build/Windows/aarpg.exe
+
+      - name: Exportierte Datei als Artefakt speichern
+        uses: actions/upload-artifact@v3
+        with:
+          name: godot-build
+          path: build/
