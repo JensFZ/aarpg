@@ -28,8 +28,11 @@ jobs:
           godot --headless --export-release "Web" Build/Web/index.html
           godot --headless --export-release "Windows Desktop" Build/Windows/aarpg.exe
 
-      - name: Exportierte Datei als Artefakt speichern
-        uses: actions/upload-artifact@v3
+      - name: Exportierte Dateien als Artefakt speichern
+        uses: actions/upload-artifact@v4
         with:
           name: godot-build
-          path: build/
+          path: |
+              Build/
+              logs/
+          retention-days: 30
