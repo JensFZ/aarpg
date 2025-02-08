@@ -22,9 +22,10 @@ jobs:
       - name: Exportieren des Godot-Projekts
         run: |
           mkdir -p Build
-	  mkdir -p Build/Web
-	  mkdir -p Build/Windows
-	  godot --headless --export-release "Web" Build/Web/index.html
+          mkdir -p Build/Web
+          mkdir -p Build/Windows
+          
+          godot --headless --export-release "Web" Build/Web/index.html
           godot --headless --export-release "Windows Desktop" Build/Windows/aarpg.exe
 
       - name: Exportierte Datei als Artefakt speichern
