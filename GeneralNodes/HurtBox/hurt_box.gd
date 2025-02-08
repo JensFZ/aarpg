@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func AreaEntered( _area: Area2D ) -> void:
 	if _area is HitBox:
-		_area.take_damage( damage )
+		_area.take_damage( self )
 	pass

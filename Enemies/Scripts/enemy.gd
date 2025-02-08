@@ -69,11 +69,11 @@ func AnimDirection() -> String:
 	else:
 		return "side"
 
-func _take_damage( damage:int ) -> void:
+func _take_damage( hurt_box: HurtBox ) -> void:
 	if invulnerable == true:
 		return
 		
-	hp -= damage
+	hp -= hurt_box.damage
 	if hp > 0:
 		enemy_damaged.emit()
 	else:
