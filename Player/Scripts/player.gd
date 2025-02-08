@@ -9,7 +9,8 @@ var direction: Vector2 = Vector2.ZERO
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
-signal DirectionChanged( new_Direction : Vector2 )
+signal direction_changed( new_Direction : Vector2 )
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,7 +49,7 @@ func SetDirection() -> bool:
 	
 	cardinal_direction = new_direction
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
-	DirectionChanged.emit( new_direction )
+	direction_changed.emit( new_direction )
 	
 	return true
 
