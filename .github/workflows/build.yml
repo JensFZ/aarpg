@@ -15,7 +15,7 @@ jobs:
       - name: Repository klonen
         uses: actions/checkout@v4
 
-      - name: Godot installieren
+      - name: Godot installieren und Bauen
         id: export
         uses: firebelley/godot-export@v6.0.0
         with:
@@ -23,15 +23,6 @@ jobs:
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
           relative_project_path: ./
           archive_output: true
-
-      - name: Exportieren des Godot-Projekts
-        run: |
-          mkdir -p Build
-          mkdir -p Build/Web
-          mkdir -p Build/Windows
-          
-          godot --headless --export-release "Web" Build/Web/index.html
-          godot --headless --export-release "Windows Desktop" Build/Windows/aarpg.exe
 
       - name: Exportierte Dateien als Artefakt speichern
         uses: actions/upload-artifact@v4
@@ -41,3 +32,11 @@ jobs:
               Build/
               logs/
           retention-days: 30
+          
+      - name: create release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: ${{ github.ref_name }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/*
