@@ -50,6 +50,11 @@ jobs:
         with:
           name: build-artifacts
           path: ./build-artifacts
+          
+      - name: Unzip Build Artifacts
+        run: |
+          mkdir -p ./build-artifacts/Web  # Stellt sicher, dass das Zielverzeichnis existiert
+          unzip ./build-artifacts/Web.zip -d ./build-artifacts/Web/
 
       - name: Setup SSH Key
         run: |
