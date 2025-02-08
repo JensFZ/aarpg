@@ -73,3 +73,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: ./build-artifacts/Web/*
           target: ./
+          strip_components: 2
