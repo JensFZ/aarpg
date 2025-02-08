@@ -11,13 +11,14 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 	set(_value):
 		size = _value
 		_update_area()
-		
-		
+
+
 @export var side: SIDE = SIDE.LEFT :
 	set ( _value ):
 		side = _value
 		_update_area()
-		
+
+
 @export var snap_to_grid : bool = false :
 	set (_value):
 		_snap_to_grid()
