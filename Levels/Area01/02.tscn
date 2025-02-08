@@ -35,5 +35,6 @@ position = Vector2(49, 75)
 
 [node name="LevelTransition" parent="." instance=ExtResource("5_jh4r0")]
 position = Vector2(288, -64)
+level = "res://Levels/Area01/01.tscn"
 target_transition = ""
 side = 2
