@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bj3jrhjg8lyb1"]
+[gd_scene load_steps=38 format=3 uid="uid://bj3jrhjg8lyb1"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_cw8hj"]
 [ext_resource type="Texture2D" uid="uid://dfui0g2uuon4t" path="res://Player/Sprites/PlayerSprite02.png" id="2_6phro"]
@@ -474,6 +474,57 @@ tracks/0/keys = {
 "values": [13, 16]
 }
 
+[sub_resource type="Animation" id="Animation_rm8ub"]
+resource_name = "stun_down"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30]
+}
+
+[sub_resource type="Animation" id="Animation_q5awo"]
+resource_name = "stun_up"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [31]
+}
+
+[sub_resource type="Animation" id="Animation_cdrhl"]
+resource_name = "stun_side"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5h21a"]
 _data = {
 "RESET": SubResource("Animation_04dwh"),
@@ -483,6 +534,9 @@ _data = {
 "idle_down": SubResource("Animation_pcts4"),
 "idle_side": SubResource("Animation_jo42x"),
 "idle_up": SubResource("Animation_1uq8f"),
+"stun_down": SubResource("Animation_rm8ub"),
+"stun_side": SubResource("Animation_cdrhl"),
+"stun_up": SubResource("Animation_q5awo"),
 "walk_down": SubResource("Animation_80v58"),
 "walk_side": SubResource("Animation_1id7v"),
 "walk_up": SubResource("Animation_v3iep")
