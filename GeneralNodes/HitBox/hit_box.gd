@@ -13,5 +13,4 @@ func _process(_delta: float) -> void:
 
 
 func take_damage( damage: int ) -> void:
-	print("Hit: ", damage )
 	damaged.emit( damage )
