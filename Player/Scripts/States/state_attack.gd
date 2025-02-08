@@ -16,7 +16,7 @@ var attacking: bool = false
 
 ## Enters the state
 func Enter() -> void: 
-	player.UpdateAnimation("attack")
+	player.update_animation("attack")
 	attack_animation_player.play("attack_" + player.AnimDirection())
 	
 	audio.stream = attack_sound

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://c5k2m4prvmglp"]
+[gd_scene load_steps=34 format=3 uid="uid://c5k2m4prvmglp"]
 
 [ext_resource type="Texture2D" uid="uid://dvq2inn3irscg" path="res://Enemies/Slime/Slime.png" id="1_3qmtd"]
 [ext_resource type="Texture2D" uid="uid://douhqgj6jxsex" path="res://Player/Sprites/Shadow.png" id="1_epi8w"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_i3dph"]
 [ext_resource type="PackedScene" uid="uid://mvary1x6lq8u" path="res://GeneralNodes/HitBox/hit_box.tscn" id="2_v6cfr"]
+[ext_resource type="Script" path="res://GeneralNodes/HurtBox/hurt_box.gd" id="4_5qsr5"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="4_o1qip"]
 [ext_resource type="AudioStream" uid="uid://bun7wo8gt3kng" path="res://Enemies/Slime/hit_01.wav" id="5_otu2d"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_state_idle.gd" id="5_qlhh8"]
@@ -731,6 +732,7 @@ debug_color = Color(0.94902, 0.0392157, 0, 0.419608)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_v4e53")]
 position = Vector2(0, -7)
+script = ExtResource("4_5qsr5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_3nryy")

@@ -18,10 +18,10 @@ func enter() -> void:
 	
 	_direction = enemy.global_position.direction_to( _damage_position )
 	
-	enemy.SetDirection( _direction )
+	enemy.set_direction( _direction )
 	enemy.velocity = _direction * -knockback_speed
 	
-	enemy.UpdateAnimation( anim_name )
+	enemy.update_animation( anim_name )
 	
 	enemy.animation_player.animation_finished.connect( _on_animation_finished )
 	pass

@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInteractionsHost.gd" id="10_ghpvw"]
 [ext_resource type="PackedScene" uid="uid://bjr3hk4q2saq7" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="11_dllga"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCamera.gd" id="12_gj1e0"]
-[ext_resource type="Script" path="res://Player/Scripts/States/state_stun.gd" id="12_y4shw"]
+[ext_resource type="Script" path="res://Player/Scripts/States/stun.gd" id="12_y4shw"]
 [ext_resource type="PackedScene" uid="uid://mvary1x6lq8u" path="res://GeneralNodes/HitBox/hit_box.tscn" id="14_yet8s"]
 [ext_resource type="AudioStream" uid="uid://bql2wt38m8t18" path="res://Player/Audio/hit_player.wav" id="15_jts0g"]
 
@@ -670,16 +670,15 @@ script = ExtResource("4_kiiap")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_sg3pi")
+move_speed = null
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_748sy")
 attack_sound = ExtResource("8_fvodi")
+decelerate_speed = null
 
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("12_y4shw")
-knockback_speed = null
-decelerate_speed = null
-invulnerable_duration = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true
@@ -696,7 +695,6 @@ script = ExtResource("10_ghpvw")
 [node name="EnemyStateMachine" type="Node2D" parent="."]
 
 [node name="HitBox" parent="." instance=ExtResource("14_yet8s")]
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -9)

@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()	
 	
 
-func SetDirection() -> bool: 
+func set_direction() -> bool: 
 	
 	if direction == Vector2.ZERO:
 		return false
@@ -63,7 +63,7 @@ func SetDirection() -> bool:
 	
 	return true
 
-func UpdateAnimation(state : String) -> void:
+func update_animation(state : String) -> void:
 	animation_player.play(state + "_" + AnimDirection() )
 	pass
 	
@@ -93,6 +93,14 @@ func update_hp( delta: int ) -> void:
 	hp = clampi(hp + delta, 0, max_hp)
 	pass
 
-func make_invulnerable( ) -> void:
+func make_invulnerable( _duration: float = 1.0 ) -> void:
 	invulnerable = true
+	hit_box.monitoring = false
+	
+	# Timer erzeugen und auf Timeout warten
+	await get_tree().create_timer( _duration ).timeout
+	
+	invulnerable = false 
+	hit_box.monitoring = true 
+	
 	pass

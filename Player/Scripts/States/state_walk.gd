@@ -7,7 +7,7 @@ class_name State_Walk extends State
 
 ## Enters the state
 func Enter() -> void: 
-	player.UpdateAnimation("walk")
+	player.update_animation("walk")
 	pass
 
 ## Exits the state
@@ -21,8 +21,8 @@ func Process(_delta: float) -> State:
 		
 	player.velocity = player.direction * move_speed
 	
-	if player.SetDirection():
-		player.UpdateAnimation("walk")
+	if player.set_direction():
+		player.update_animation("walk")
 	return null
 
 ## _physics_process updates the state
