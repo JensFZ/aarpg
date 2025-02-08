@@ -1,18 +1,19 @@
-[gd_scene load_steps=43 format=3 uid="uid://bj3jrhjg8lyb1"]
+[gd_scene load_steps=44 format=3 uid="uid://bj3jrhjg8lyb1"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_cw8hj"]
 [ext_resource type="Texture2D" uid="uid://dfui0g2uuon4t" path="res://Player/Sprites/PlayerSprite02.png" id="2_6phro"]
 [ext_resource type="Script" path="res://Player/Scripts/playerStateMachine.gd" id="3_dlqqs"]
 [ext_resource type="Texture2D" uid="uid://douhqgj6jxsex" path="res://Player/Sprites/Shadow.png" id="3_fwy26"]
 [ext_resource type="Texture2D" uid="uid://cs0p2i1pdh0ut" path="res://Player/Sprites/AttackSprite01.png" id="3_ow00q"]
-[ext_resource type="Script" path="res://Player/Scripts/state_idle.gd" id="4_kiiap"]
-[ext_resource type="Script" path="res://Player/Scripts/state_walk.gd" id="5_sg3pi"]
-[ext_resource type="Script" path="res://Player/Scripts/state_attack.gd" id="6_748sy"]
+[ext_resource type="Script" path="res://Player/Scripts/States/state_idle.gd" id="4_kiiap"]
+[ext_resource type="Script" path="res://Player/Scripts/States/state_walk.gd" id="5_sg3pi"]
+[ext_resource type="Script" path="res://Player/Scripts/States/state_attack.gd" id="6_748sy"]
 [ext_resource type="AudioStream" uid="uid://b1xy4f52ct3pm" path="res://Player/Audio/SwordSwoosh.wav" id="8_fvodi"]
 [ext_resource type="Script" path="res://GeneralNodes/HurtBox/hurt_box.gd" id="10_bkx41"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInteractionsHost.gd" id="10_ghpvw"]
 [ext_resource type="PackedScene" uid="uid://bjr3hk4q2saq7" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="11_dllga"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCamera.gd" id="12_gj1e0"]
+[ext_resource type="Script" path="res://Player/Scripts/States/stun.gd" id="12_y4shw"]
 [ext_resource type="PackedScene" uid="uid://mvary1x6lq8u" path="res://GeneralNodes/HitBox/hit_box.tscn" id="14_yet8s"]
 [ext_resource type="AudioStream" uid="uid://bql2wt38m8t18" path="res://Player/Audio/hit_player.wav" id="15_jts0g"]
 
@@ -421,6 +422,57 @@ tracks/0/keys = {
 "values": [3, 5]
 }
 
+[sub_resource type="Animation" id="Animation_rm8ub"]
+resource_name = "stun_down"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30]
+}
+
+[sub_resource type="Animation" id="Animation_cdrhl"]
+resource_name = "stun_side"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32]
+}
+
+[sub_resource type="Animation" id="Animation_q5awo"]
+resource_name = "stun_up"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [31]
+}
+
 [sub_resource type="Animation" id="Animation_80v58"]
 resource_name = "walk_down"
 length = 0.3
@@ -475,57 +527,6 @@ tracks/0/keys = {
 "values": [13, 16]
 }
 
-[sub_resource type="Animation" id="Animation_rm8ub"]
-resource_name = "stun_down"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [30]
-}
-
-[sub_resource type="Animation" id="Animation_q5awo"]
-resource_name = "stun_up"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [31]
-}
-
-[sub_resource type="Animation" id="Animation_cdrhl"]
-resource_name = "stun_side"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [32]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5h21a"]
 _data = {
 "RESET": SubResource("Animation_04dwh"),
@@ -544,21 +545,6 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_enfk3"]
-
-[sub_resource type="Animation" id="Animation_1th48"]
-resource_name = "default"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_0bsx6"]
 length = 0.001
@@ -605,6 +591,21 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_1th48"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gngf2"]
 _data = {
@@ -673,6 +674,9 @@ script = ExtResource("5_sg3pi")
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_748sy")
 attack_sound = ExtResource("8_fvodi")
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("12_y4shw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true
