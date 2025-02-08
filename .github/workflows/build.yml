@@ -1,9 +1,9 @@
 name: Build Godot Project
 
-on:
+on: 
   push:
-    branches:
-      - main  # Oder dein Entwicklungsbranch
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -24,15 +24,6 @@ jobs:
           relative_project_path: ./
           archive_output: true
 
-      - name: Exportierte Dateien als Artefakt speichern
-        uses: actions/upload-artifact@v4
-        with:
-          name: godot-build
-          path: |
-              Build/
-              logs/
-          retention-days: 30
-          
       - name: create release
         uses: ncipollo/release-action@v1.14.0
         with:
@@ -40,3 +31,28 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ github.ref_name }}
           artifacts: ${{ steps.export.outputs.archive_directory }}/*
+          
+  upload:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Upload to Webspace
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Upload Web Build via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: ${{ steps.export.outputs.archive_directory }}/Web/*
+          target: ./
