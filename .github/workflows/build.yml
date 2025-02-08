@@ -33,7 +33,7 @@ jobs:
           path: ${{ steps.export.outputs.archive_directory }}
           retention-days: 7
 
-  upload:
+  upload_release:
     if: startsWith(github.ref, 'refs/tags/')
     needs: build
     permissions:
@@ -56,6 +56,21 @@ jobs:
           tag: ${{ github.ref_name }}
           artifacts: ./build-artifacts/*
           
+  upload_Web:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    permissions:
+        contents: write
+    runs-on: ubuntu-latest
+    name: Upload to Webspace
+    
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./build-artifacts
+
       - name: Unzip Build Artifacts
         run: |
           mkdir -p ./build-artifacts/Web  # Stellt sicher, dass das Zielverzeichnis existiert
