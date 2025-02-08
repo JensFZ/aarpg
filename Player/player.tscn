@@ -677,9 +677,6 @@ attack_sound = ExtResource("8_fvodi")
 
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("12_y4shw")
-knockback_speed = null
-decelerate_speed = null
-invulnerable_duration = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true

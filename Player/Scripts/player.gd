@@ -6,7 +6,7 @@ var cardinal_direction : Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var invulnerable: bool = false 
 
-@export var hp : int = 6 # export hinzugefügt
+var hp : int = 6 # export hinzugefügt
 @export var max_hp: int = 6 # export hinzugefügt
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

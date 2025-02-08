@@ -16,13 +16,14 @@ func init() -> void:
 
 ## Enters the state
 func Enter() -> void: 	
-	player.update_animation( "stun" )
 	player.animation_player.animation_finished.connect( _animation_finished )
 	
 	direction = player.global_position.direction_to( hurt_box.global_position )
 	player.velocity = direction * -knockback_speed
 	player.set_direction()
-
+	
+	player.update_animation( "stun" )
+	
 	player.make_invulnerable( invulnerable_duration )
 	player.effect_animation_player.play("damaged")
 	
@@ -36,6 +37,7 @@ func Exit() -> void:
 
 ## _process updates the state
 func Process(_delta: float) -> State:
+	player.velocity -= player.velocity * decelerate_speed * _delta
 	return next_state
 
 ## _physics_process updates the state
