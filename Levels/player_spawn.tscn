@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://cj0pgm0sesht8"]
+[gd_scene load_steps=3 format=3 uid="uid://cj0pgm0sesht8"]
+
+[ext_resource type="Texture2D" uid="uid://dfui0g2uuon4t" path="res://Player/Sprites/PlayerSprite02.png" id="1_cw4sw"]
+[ext_resource type="Script" path="res://Levels/scripts/player_spwan.gd" id="1_g08mb"]
 
 [node name="PlayerSpawn" type="Node2D"]
+script = ExtResource("1_g08mb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.298039, 1, 0.431373, 0.784314)
+position = Vector2(0, -20)
+texture = ExtResource("1_cw4sw")
+hframes = 16
+vframes = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -1.0
+offset_right = 52.0
+offset_bottom = 22.0
+scale = Vector2(0.5, 0.5)
+text = "Spawner"
