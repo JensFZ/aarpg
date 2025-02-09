@@ -2,7 +2,7 @@
 
 Godot Game based on YT Tutorial https://www.youtube.com/watch?v=QPeycNt29tY&list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
-I've try to generate a new release after each chapter i've seen.
+I've try to generate a new release after each chapter i've seen (i've had this idea maybe a little bit late).
 if I forgot to set a tag then you have to find out the right commit ;)
 
 DISCLAIMER:
