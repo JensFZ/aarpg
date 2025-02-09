@@ -10,6 +10,7 @@ size = Vector2(32, 96)
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_jnnhd")
+target_transition_area = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4jrfr")

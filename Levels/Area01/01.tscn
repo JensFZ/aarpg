@@ -17,10 +17,12 @@ position = Vector2(306, 358)
 [node name="LevelTransition" parent="." instance=ExtResource("4_wpyrb")]
 position = Vector2(272, 448)
 level = "res://Levels/Area01/02.tscn"
+target_transition_area = "LevelTransition"
 size = 5
 side = 3
 
 [node name="LevelTransition2" parent="." instance=ExtResource("4_wpyrb")]
 position = Vector2(640, 192)
 level = "res://Levels/Area01/03.tscn"
+target_transition_area = "LevelTransition"
 side = 1
