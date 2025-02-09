@@ -45,4 +45,6 @@ func _on_load_pressed() -> void:
 	if is_paused == false:
 		return
 	SaveManager.load_game()
+	
+	await LevelManager.level_load_started #Warten auf Transition
 	hide_pause_menu()

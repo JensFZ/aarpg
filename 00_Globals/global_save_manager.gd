@@ -28,17 +28,26 @@ func save_game() -> void:
 	file.store_line(save_json)
 	game_saved.emit()
 	
-	print("save_game")
 	pass
 	
 func load_game() -> void:
-	#var file := FileAccess.open(SAVE_PATH + "save.sav", FileAccess.READ)
-	#var save_json = file.get_line()
-	#current_save = JSON.parse_string(save_json)
-	#
-	#game_loaded.emit()
-	#
-	#print("load_game")
+	var file := FileAccess.open(SAVE_PATH + "save.sav", FileAccess.READ)
+	var json := JSON.new()
+	json.parse( file.get_line() )
+	var _save_dict := json.get_data() as Dictionary
+	current_save = _save_dict
+	
+	LevelManager.load_new_level( current_save.scene_path, "", Vector2.ZERO )
+	
+	await LevelManager.level_load_started
+	
+	PlayerManager.set_player_position( Vector2( current_save.player.pos_x, current_save.player.pos_y ) )
+	PlayerManager.set_health( current_save.player.hp, current_save.player.max_hp )
+
+	await LevelManager.level_loaded
+
+	game_loaded.emit()
+	
 	pass
 
 func update_player_data() -> void:
