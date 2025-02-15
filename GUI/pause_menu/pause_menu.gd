@@ -3,6 +3,7 @@ extends CanvasLayer
 signal shown
 signal hidden
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var btn_load: Button = $Control/HBoxContainer/btn_load
 @onready var btn_save: Button = $Control/HBoxContainer/btn_save
 @onready var lbl_item_description: Label = $Control/lblItemDescription
@@ -56,3 +57,7 @@ func _on_load_pressed() -> void:
 
 func update_item_description( new_text : String ) -> void:
 	lbl_item_description.text = new_text
+	
+func play_audio( audio : AudioStream ) -> void:
+	audio_stream_player.stream = audio
+	audio_stream_player.play()
