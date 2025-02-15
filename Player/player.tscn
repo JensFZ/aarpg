@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bj3jrhjg8lyb1"]
+[gd_scene load_steps=45 format=3 uid="uid://bj3jrhjg8lyb1"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_cw8hj"]
 [ext_resource type="Texture2D" uid="uid://dfui0g2uuon4t" path="res://Player/Sprites/PlayerSprite02.png" id="2_6phro"]
@@ -544,6 +544,8 @@ _data = {
 "walk_up": SubResource("Animation_v3iep")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa7o3"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_enfk3"]
 
 [sub_resource type="Animation" id="Animation_0bsx6"]
@@ -689,6 +691,16 @@ max_polyphony = 4
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("10_ghpvw")
+
+[node name="Area2D" type="Area2D" parent="Interactions"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_fa7o3")
+debug_color = Color(0, 1, 0, 0.392157)
 
 [node name="EnemyStateMachine" type="Node2D" parent="."]
 
