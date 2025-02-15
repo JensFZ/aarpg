@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgk2poax4qgyp"]
+[gd_scene load_steps=8 format=3 uid="uid://dgk2poax4qgyp"]
 
 [ext_resource type="Script" path="res://GUI/pause_menu/pause_menu.gd" id="1_ec617"]
 [ext_resource type="Texture2D" uid="uid://bcs1x1ule0ptn" path="res://Items/sprites/items.png" id="2_ytx52"]
 [ext_resource type="PackedScene" uid="uid://cughwivfh5ojs" path="res://GUI/pause_menu/Inventory/inventory_slot.tscn" id="3_3q518"]
+[ext_resource type="Script" path="res://GUI/pause_menu/Inventory/scripts/inventory_ui.gd" id="3_8qluu"]
+[ext_resource type="Resource" uid="uid://dpq8e7x7umbl1" path="res://GUI/pause_menu/Inventory/player_inventory.tres" id="4_i2c76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhoko"]
 atlas = ExtResource("2_ytx52")
@@ -53,7 +55,24 @@ offset_bottom = 35.0
 grow_horizontal = 2
 text = "[paused ]"
 
+[node name="lblItemDescription" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 140.0
+offset_right = -25.0
+offset_bottom = 163.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
+text = "asdasdasdasdasdasda asddasdasdasda asd asd asd asda df asda sda a"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
 offset_left = 20.0
 offset_top = 46.0
 offset_right = 216.0
@@ -63,6 +82,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_m118n")
 [node name="GridContainer" type="GridContainer" parent="Control/PanelContainer"]
 layout_mode = 2
 columns = 5
+script = ExtResource("3_8qluu")
+data = ExtResource("4_i2c76")
 
 [node name="InventorySlot" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_3q518")]
 layout_mode = 2

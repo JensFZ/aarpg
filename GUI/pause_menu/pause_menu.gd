@@ -1,7 +1,11 @@
 extends CanvasLayer
 
+signal shown
+signal hidden
+
 @onready var btn_load: Button = $Control/HBoxContainer/btn_load
 @onready var btn_save: Button = $Control/HBoxContainer/btn_save
+@onready var lbl_item_description: Label = $Control/lblItemDescription
 
 var is_paused : bool = false 
 
@@ -28,12 +32,13 @@ func show_pause_menu() -> void:
 	get_tree().paused = true 
 	visible = true
 	is_paused = true
-	btn_save.grab_focus()
+	shown.emit()
 
 func hide_pause_menu() -> void:
 	is_paused = false
 	visible = false
 	get_tree().paused = false
+	hidden.emit()
 
 func _on_save_pressed() -> void:
 	if is_paused == false:
@@ -48,3 +53,6 @@ func _on_load_pressed() -> void:
 	
 	await LevelManager.level_load_started #Warten auf Transition
 	hide_pause_menu()
+
+func update_item_description( new_text : String ) -> void:
+	lbl_item_description.text = new_text
