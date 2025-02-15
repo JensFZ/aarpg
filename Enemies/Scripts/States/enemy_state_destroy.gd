@@ -24,6 +24,8 @@ func enter() -> void:
 	enemy.update_animation( anim_name )
 	
 	enemy.animation_player.animation_finished.connect( _on_animation_finished )
+	disable_hurt_box()
+	
 	pass
 
 func exit() -> void:
@@ -42,3 +44,9 @@ func _on_enemy_destroyed( hurt_box: HurtBox  ) -> void:
 	
 func _on_animation_finished( _a : String ) -> void:
 	enemy.queue_free()
+
+func disable_hurt_box() -> void:
+	var hurt_box : HurtBox = enemy.get_node_or_null("HurtBox")
+	if hurt_box:
+		hurt_box.monitoring = false 
+	
