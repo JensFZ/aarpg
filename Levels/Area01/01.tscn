@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://blxlptyxlapv3"]
+[gd_scene load_steps=8 format=4 uid="uid://blxlptyxlapv3"]
 
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="1_83aqw"]
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_eotgk"]
 [ext_resource type="PackedScene" uid="uid://cj0pgm0sesht8" path="res://Levels/player_spawn.tscn" id="2_01acn"]
 [ext_resource type="PackedScene" uid="uid://dehwrcusvnp" path="res://Levels/level_transition.tscn" id="4_wpyrb"]
+[ext_resource type="Resource" uid="uid://dd6o1iy1ivcyq" path="res://Items/stone.tres" id="7_q8600"]
+[ext_resource type="Resource" uid="uid://bc1cgdugugk47" path="res://Items/potion.tres" id="8_n8a6h"]
 [ext_resource type="PackedScene" uid="uid://ka7blt10k2t7" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="10_igmsl"]
 
 [node name="01" type="Node2D"]
@@ -30,9 +32,12 @@ side = 1
 
 [node name="Treasure-chest" parent="." instance=ExtResource("10_igmsl")]
 position = Vector2(306, 288)
+item_data = ExtResource("8_n8a6h")
 
 [node name="Treasure-chest2" parent="." instance=ExtResource("10_igmsl")]
 position = Vector2(229, 288)
+item_data = ExtResource("7_q8600")
+quantity = 5
 
 [node name="Treasure-chest3" parent="." instance=ExtResource("10_igmsl")]
 position = Vector2(376, 288)
