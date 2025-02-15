@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://v83b30gyemd8"]
+[gd_scene load_steps=44 format=3 uid="uid://v83b30gyemd8"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_hulhy"]
 [ext_resource type="PackedScene" uid="uid://mvary1x6lq8u" path="res://GeneralNodes/HitBox/hit_box.tscn" id="2_jw8cr"]
@@ -17,6 +17,8 @@
 [ext_resource type="Resource" uid="uid://c0judsd0bjys" path="res://Items/gem.tres" id="15_faouf"]
 [ext_resource type="Resource" uid="uid://blwpueg7uiyab" path="res://Items/apple.tres" id="16_uq0ok"]
 [ext_resource type="Texture2D" uid="uid://23nxmetob6g0" path="res://Enemies/Slime/DestroySmoke.png" id="17_r11ft"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_state_chase.gd" id="17_wvhyn"]
+[ext_resource type="PackedScene" uid="uid://8vyqphvgcaww" path="res://Enemies/vision_area.tscn" id="18_djnd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3nryy"]
 radius = 13.0
@@ -797,11 +799,17 @@ next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("12_i6gid")
-next_state = NodePath("../Idle")
+next_state = NodePath("../Chase")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("13_0ploa")
 drops = Array[ExtResource("14_2o82x")]([SubResource("Resource_wijkf"), SubResource("Resource_we0ee")])
+
+[node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack_area", "next_state", "vision_area")]
+script = ExtResource("17_wvhyn")
+attack_area = NodePath("../../Sprite2D/AttackHurtBox")
+next_state = NodePath("../Idle")
+vision_area = NodePath("../../VisionArea")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 4
@@ -816,3 +824,9 @@ hframes = 6
 libraries = {
 "": SubResource("AnimationLibrary_dli3y")
 }
+
+[node name="VisionArea" parent="." instance=ExtResource("18_djnd7")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
+position = Vector2(0, -7)
+polygon = PackedVector2Array(-16, 0, 16, 0, 128, 128, -128, 128)
