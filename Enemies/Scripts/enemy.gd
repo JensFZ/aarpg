@@ -18,7 +18,6 @@ var invulnerable: bool = false
 @onready var state_machine: EnemyStateMachine = $EnemyStateMachine
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	state_machine.initialize( self )

@@ -73,7 +73,10 @@ func drop_items() -> void:
 			drop.item_data = drops[ i ].item 
 			enemy.get_parent().call_deferred( "add_child", drop ) #Area2d callt drop_items (durch mehrere stationen) -> man kann kein Area2D per simplen add_child hinzufügen. Deswegen dieser umweg
 			
-			drop.global_position = enemy.global_position + Vector2(randf() * 16, randf()*16)
+			drop.global_position = enemy.global_position 
+			
+			# Velocity = ca. -45 bis ca. 45 Grad in blickrichtung vom Enemy * zufällige Geschwindigkeit
+			drop.velocity = enemy.velocity.rotated( randf_range( -1.5, 1.5 ) ) * randf_range( 0.9, 1.5 )
 	
 	pass
 	
