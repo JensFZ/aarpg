@@ -60,7 +60,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -73,6 +73,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ItemSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_0k6nx"]
@@ -157,6 +169,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, -10), Vector2(0, -64), Vector2(0, -48), Vector2(0, -48)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ItemSprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.3, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fgkfs"]
 _data = {
@@ -181,7 +205,6 @@ texture = ExtResource("2_iusf6")
 hframes = 2
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -10)
 texture = SubResource("AtlasTexture_jk6hx")
 
@@ -212,12 +235,12 @@ collision_mask = 0
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_76lgk")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="interact_area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact_area"]
 position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_3iljw")
 debug_color = Color(0, 0.701961, 0.337255, 0.419608)
