@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c0judsd0bjys"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c0judsd0bjys"]
 
 [ext_resource type="Script" path="res://Items/scripts/item_data.gd" id="1_u050u"]
+[ext_resource type="Texture2D" uid="uid://bcs1x1ule0ptn" path="res://Items/sprites/items.png" id="2_v5fjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85het"]
+atlas = ExtResource("2_v5fjs")
+region = Rect2(0, 0, 32, 32)
 
 [resource]
 script = ExtResource("1_u050u")
-name = ""
-description = ""
+name = "Gem"
+description = "ein Wertvoller Edelstein!"
+texture = SubResource("AtlasTexture_85het")
