@@ -2,6 +2,8 @@ class_name InventoryUI extends Node
 
 const INVENTORY_SLOT = preload("res://GUI/pause_menu/Inventory/inventory_slot.tscn")
 
+var focus_index: int = 0
+
 @export var data : InventoryData
 
 func _ready() -> void:
@@ -19,16 +21,27 @@ func clear_inventory() -> void:
 		c.queue_free()
 		
 
-
-func update_inventory() -> void:
+func update_inventory() -> void: #Abweichung zum Video. aus meiner sicht, muss der parameter nicht übergeben werden, da focus_index alles von alleine erfüllt
 	for s in data.slots:
 		var new_slot = INVENTORY_SLOT.instantiate()
 		add_child( new_slot )
 		new_slot.slot_data = s
+		new_slot.focus_entered.connect ( item_focused )
 	
-	get_child( 0 ).grab_focus()
+	await get_tree().process_frame # Wenn nicht gewartet wird, wird der focus nicht richtig gesetzt
+	get_child( focus_index ).grab_focus()
 
 func on_inventory_changed() -> void:
+	
 	clear_inventory()
 	update_inventory()
+
+	pass
+
+func item_focused() -> void:
+	for i in get_child_count():
+		if get_child(i).has_focus():
+			focus_index = i
+			return
+	
 	pass
