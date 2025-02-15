@@ -1,4 +1,4 @@
-class_name DropData extends Expression
+class_name DropData extends Resource
 
 @export var item : ItemData
 @export_range(0,100,1, "suffix:%") var probability: float = 100.0
