@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_tcu3a"]
 script = ExtResource("2_tevdx")
-heal_amount = 1
+heal_amount = 2
 audio = ExtResource("3_ov3la")
 use_description = "Heilung"
 
