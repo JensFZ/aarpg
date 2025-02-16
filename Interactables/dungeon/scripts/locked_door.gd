@@ -1,6 +1,6 @@
 class_name LockedDoor extends Node2D
 
-var is_opend : bool = false
+var is_open : bool = false
 
 @export var key_item : ItemData
 
@@ -16,7 +16,10 @@ var is_opend : bool = false
 func _ready() -> void:
 	interact_area.area_entered.connect( _on_area_enter )
 	interact_area.area_exited.connect( _on_area_exit )
+	is_open_data.data_loaded.connect( set_state )
 	
+	set_state()
+
 func open_door() -> void:
 	if key_item == null:
 		return
@@ -35,10 +38,16 @@ func open_door() -> void:
 func close_door() -> void:
 	animation_player.play( "close_door" )
 
+func set_state() -> void:
+	is_open = is_open_data.value
+	if is_open:
+		animation_player.play( "opened" )
+	else:
+		animation_player.play( "closed" )
 
 func _on_area_enter( _a : Area2D ) -> void:
 	PlayerManager.interact_pressed.connect( open_door )
 
-func _on_area_exit (_a : Area2D ) -> void:
+func _on_area_exit ( _a : Area2D ) -> void:
 	PlayerManager.interact_pressed.disconnect( open_door )
 	pass

@@ -158,6 +158,7 @@ _data = {
 size = Vector2(34, 20)
 
 [node name="LockedDoor" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_lullo")
 key_item = ExtResource("2_gxebb")
 locked_audio = ExtResource("3_4o2ad")
