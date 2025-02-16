@@ -33,7 +33,10 @@ size = 1
 side = 2
 
 [node name="PressurePlate" parent="." instance=ExtResource("5_fd7mk")]
-position = Vector2(144, 208)
+position = Vector2(320, 128)
 
 [node name="BarredDoor" parent="." instance=ExtResource("6_myaix")]
 position = Vector2(223, 86)
+
+[connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
+[connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]
