@@ -42,5 +42,9 @@ position = Vector2(223, 86)
 [node name="PushableStatue" parent="." instance=ExtResource("7_w5jvy")]
 position = Vector2(351, 199)
 
+[node name="PushableStatue2" parent="." instance=ExtResource("7_w5jvy")]
+position = Vector2(159, 199)
+pushable = false
+
 [connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
 [connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]
