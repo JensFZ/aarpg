@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://qycw6xb1n062"]
+
+[ext_resource type="Script" path="res://Items/item_effects/item_effect.gd" id="1_ss812"]
+[ext_resource type="Script" path="res://Items/scripts/item_data.gd" id="2_d8f7o"]
+[ext_resource type="Texture2D" uid="uid://bcs1x1ule0ptn" path="res://Items/sprites/items.png" id="3_r2al3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oouh0"]
+atlas = ExtResource("3_r2al3")
+region = Rect2(224, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_d8f7o")
+name = "Dungeon Key"
+description = "wenn es doch nur ein Schloß hierfür gäbe."
+texture = SubResource("AtlasTexture_oouh0")
+effects = Array[ExtResource("1_ss812")]([])
