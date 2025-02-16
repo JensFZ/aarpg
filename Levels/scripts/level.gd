@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+@onready var enemy_counter: EnemyCounter = $EnemyCounter
+
 
 func _ready() -> void:
 	self.y_sort_enabled = true
