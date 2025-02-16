@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://ddn7gjsur0c8f"]
+[gd_scene load_steps=5 format=4 uid="uid://ddn7gjsur0c8f"]
 
 [ext_resource type="PackedScene" uid="uid://cj0pgm0sesht8" path="res://Levels/player_spawn.tscn" id="1_ghbcl"]
-[ext_resource type="PackedScene" uid="uid://6hs251asfay8" path="res://Tile Maps/dungeon_01.tscn" id="1_l1gg1"]
+[ext_resource type="PackedScene" uid="uid://6hs251asfay8" path="res://Tile Maps/dungeon-01.tscn" id="1_l1gg1"]
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_xsjiu"]
+[ext_resource type="PackedScene" uid="uid://dehwrcusvnp" path="res://Levels/level_transition.tscn" id="4_dkc4t"]
 
 [node name="01" type="Node2D"]
 script = ExtResource("1_xsjiu")
@@ -13,3 +14,17 @@ rendering_quadrant_size = 32
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("1_ghbcl")]
 position = Vector2(194, 158)
+
+[node name="LevelTransition" parent="." instance=ExtResource("4_dkc4t")]
+position = Vector2(256, 368)
+level = "res://Levels/Area01/01.tscn"
+target_transition_area = "LevelTransition3"
+size = 1
+side = 3
+
+[node name="LevelTransition2" parent="." instance=ExtResource("4_dkc4t")]
+position = Vector2(256, 80)
+level = "res://Levels/Dungeon01/02.tscn"
+target_transition_area = "LevelTransition"
+size = 1
+side = 2
