@@ -33,7 +33,11 @@ func drop_item() -> void:
 	var drop = PICKUP.instantiate() as ItemPickup
 	drop.item_data = item_data
 	add_child( drop )
+	drop.picked_up.connect( _on_drop_pickup )
 	audio.play()
+
+func _on_drop_pickup() -> void:
+	has_dropped_data.set_value()
 
 func _set_item_data( item : ItemData ) -> void:
 	item_data = item
