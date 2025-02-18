@@ -11,6 +11,7 @@ var hp : int = 6 # export hinzugefügt
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
+@onready var audio: AudioStreamPlayer2D = $Audio/AudioStreamPlayer2D
 
 @onready var hit_box: HitBox = $HitBox
 @onready var sprite: Sprite2D = $Sprite2D
