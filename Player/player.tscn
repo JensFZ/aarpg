@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bj3jrhjg8lyb1"]
+[gd_scene load_steps=47 format=3 uid="uid://bj3jrhjg8lyb1"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_cw8hj"]
 [ext_resource type="Texture2D" uid="uid://dfui0g2uuon4t" path="res://Player/Sprites/PlayerSprite02.png" id="2_6phro"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Player/Scripts/States/state_walk.gd" id="5_sg3pi"]
 [ext_resource type="Script" path="res://Player/Scripts/States/state_attack.gd" id="6_748sy"]
 [ext_resource type="AudioStream" uid="uid://b1xy4f52ct3pm" path="res://Player/Audio/SwordSwoosh.wav" id="8_fvodi"]
-[ext_resource type="Script" path="res://GeneralNodes/HurtBox/hurt_box.gd" id="10_bkx41"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInteractionsHost.gd" id="10_ghpvw"]
 [ext_resource type="PackedScene" uid="uid://bjr3hk4q2saq7" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="11_dllga"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCamera.gd" id="12_gj1e0"]
@@ -658,7 +657,6 @@ unique_name_in_owner = true
 position = Vector2(0, 20)
 collision_mask = 256
 monitoring = false
-script = ExtResource("10_bkx41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtBox"]
 shape = SubResource("CircleShape2D_vb7r6")
