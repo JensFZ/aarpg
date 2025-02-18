@@ -94,6 +94,7 @@ max_polyphony = 4
 [node name="ItemMagnet" parent="." instance=ExtResource("6_jcgka")]
 position = Vector2(0, -16)
 magnet_strength = 5.0
+play_magnet_audio = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemMagnet"]
 shape = SubResource("CircleShape2D_wjp8h")
