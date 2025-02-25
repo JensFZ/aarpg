@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=4 uid="uid://blxlptyxlapv3"]
+[gd_scene load_steps=7 format=4 uid="uid://blxlptyxlapv3"]
 
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="1_83aqw"]
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_eotgk"]
 [ext_resource type="PackedScene" uid="uid://cj0pgm0sesht8" path="res://Levels/player_spawn.tscn" id="2_01acn"]
 [ext_resource type="PackedScene" uid="uid://dehwrcusvnp" path="res://Levels/level_transition.tscn" id="4_wpyrb"]
 [ext_resource type="PackedScene" uid="uid://v83b30gyemd8" path="res://Enemies/goblin/goblin.tscn" id="5_5bv3d"]
+[ext_resource type="AudioStream" uid="uid://k1641mknb0y5" path="res://Levels/music/example_music_01.ogg" id="6_spqpb"]
 
 [node name="01" type="Node2D"]
 script = ExtResource("1_eotgk")
+music = ExtResource("6_spqpb")
 
 [node name="Grass-01" parent="." instance=ExtResource("1_83aqw")]
 position = Vector2(-12, -6)
