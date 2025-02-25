@@ -9,6 +9,7 @@ var music_bus: String = "Music"
 var music_fade_duration: float = 0.5
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	for i in music_audio_player_count:
 		var audioplayer = AudioStreamPlayer.new()
 		add_child(audioplayer)
@@ -16,5 +17,7 @@ func _ready() -> void:
 		music_players.append( audioplayer )
 		
 func play_music( _audio : AudioStream  ) -> void:
+	if _audio == music_players[ current_music_player ].stream:
+		return
 	music_players[0].stream = _audio
 	music_players[0].play(0)
