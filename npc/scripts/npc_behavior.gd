@@ -7,4 +7,9 @@ func _ready() -> void:
 	var p = get_parent()
 	if p is NPC:
 		npc = p as NPC
-		#Connect to signal
+		
+		npc.do_behavior_enabled.connect( start )
+
+
+func start() -> void:
+	pass
