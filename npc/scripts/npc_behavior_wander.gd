@@ -8,16 +8,25 @@ const DIRECTIONS = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT ]
 @export var wander_duration : float = 1.0
 @export var idle_duration : float = 1.0
 
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-
 var original_position : Vector2
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	super()
-	collision_shape_2d.queue_free()
+	$CollisionShape2D.queue_free()
 	original_position = npc.global_position
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	if abs( global_position.distance_to( original_position ) ) > wander_range * 32:
+		npc.velocity *= -1
+		npc.direction *= -1
+		npc.update_direction( global_position + npc.direction )
+		npc.update_animation()
+		
 
 func start() -> void:
 	# Idle Phase
@@ -48,4 +57,4 @@ func start() -> void:
 
 func _set_wander_range( v : int ) -> void:
 	wander_range = v
-	collision_shape_2d.shape.radius = v * 32.0
+	$CollisionShape2D.shape.radius = v * 32.0

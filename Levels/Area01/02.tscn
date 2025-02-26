@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://br1jenjmq1jtv"]
+[gd_scene load_steps=11 format=4 uid="uid://br1jenjmq1jtv"]
 
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_hg36x"]
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="2_3acv3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ewuxdjc6et0" path="res://npc/npc.tscn" id="7_six1j"]
 [ext_resource type="Resource" uid="uid://8ntrbdixasxy" path="res://npc/00_npcs/npc01.tres" id="8_wafv8"]
 [ext_resource type="PackedScene" uid="uid://hyaqeak3vc8l" path="res://npc/npc_behavior_wander.tscn" id="8_yt01q"]
+[ext_resource type="Resource" uid="uid://22udrgyuytvx" path="res://npc/00_npcs/npc02.tres" id="10_qla8r"]
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_hg36x")
@@ -50,3 +51,7 @@ position = Vector2(162, 214)
 npc_resource = ExtResource("8_wafv8")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
+
+[node name="NPC2" parent="." instance=ExtResource("7_six1j")]
+position = Vector2(437, 139)
+npc_resource = ExtResource("10_qla8r")
