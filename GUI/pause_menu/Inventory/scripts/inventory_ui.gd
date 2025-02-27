@@ -22,6 +22,7 @@ func clear_inventory() -> void:
 		
 
 func update_inventory() -> void: #Abweichung zum Video. aus meiner sicht, muss der parameter nicht übergeben werden, da focus_index alles von alleine erfüllt
+	clear_inventory()
 	for s in data.slots:
 		var new_slot = INVENTORY_SLOT.instantiate()
 		add_child( new_slot )
@@ -33,7 +34,6 @@ func update_inventory() -> void: #Abweichung zum Video. aus meiner sicht, muss d
 
 func on_inventory_changed() -> void:
 	
-	clear_inventory()
 	update_inventory()
 
 	pass
