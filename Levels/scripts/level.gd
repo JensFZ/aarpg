@@ -1,7 +1,5 @@
 class_name Level extends Node2D
 
-@onready var enemy_counter: EnemyCounter = $EnemyCounter
-
 @export var music: AudioStream
 
 func _ready() -> void:
