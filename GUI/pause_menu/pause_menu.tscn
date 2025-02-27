@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgk2poax4qgyp"]
+[gd_scene load_steps=9 format=3 uid="uid://dgk2poax4qgyp"]
 
 [ext_resource type="Script" path="res://GUI/pause_menu/pause_menu.gd" id="1_ec617"]
+[ext_resource type="FontFile" uid="uid://6vi5xc5fcj5i" path="res://GUI/fonts/m5x7.ttf" id="2_edvab"]
 [ext_resource type="Texture2D" uid="uid://bcs1x1ule0ptn" path="res://Items/sprites/items.png" id="2_ytx52"]
 [ext_resource type="PackedScene" uid="uid://cughwivfh5ojs" path="res://GUI/pause_menu/Inventory/inventory_slot.tscn" id="3_3q518"]
 [ext_resource type="Script" path="res://GUI/pause_menu/Inventory/scripts/inventory_ui.gd" id="3_8qluu"]
@@ -66,7 +67,7 @@ offset_top = 140.0
 offset_right = -25.0
 offset_bottom = 163.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = ExtResource("2_edvab")
 horizontal_alignment = 1
 autowrap_mode = 2
 
