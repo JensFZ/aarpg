@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://owi37id3qenn"]
+[gd_scene load_steps=14 format=3 uid="uid://owi37id3qenn"]
 
 [ext_resource type="Script" path="res://GUI/dialog_system/scripts/dialog_system.gd" id="1_qgvc6"]
 [ext_resource type="Texture2D" uid="uid://cojk8at8ahy5b" path="res://GUI/dialog_system/sprites/text-bubble.png" id="2_fcn8u"]
 [ext_resource type="FontFile" uid="uid://cgi8sdj7ug45d" path="res://GUI/fonts/Abaddon Light.ttf" id="3_vc31q"]
 [ext_resource type="FontFile" uid="uid://bannibqn31ou4" path="res://GUI/fonts/Abaddon Bold.ttf" id="4_0y7b1"]
+[ext_resource type="Texture2D" uid="uid://cihh0pw8wvmlo" path="res://npc/sprites/portraits/npc_portrait_01.png" id="5_r7wqo"]
+[ext_resource type="FontFile" uid="uid://6vi5xc5fcj5i" path="res://GUI/fonts/m5x7.ttf" id="6_jxso7"]
 
 [sub_resource type="Gradient" id="Gradient_niw4e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -23,6 +25,54 @@ texture_margin_left = 16.0
 texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la4gc"]
+content_margin_left = 5.0
+content_margin_top = 0.0
+content_margin_right = 2.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_6b2g4"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.2, 1.4, 1.5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_15242"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3x7o"]
+_data = {
+"RESET": SubResource("Animation_15242"),
+"default": SubResource("Animation_6b2g4")
+}
 
 [node name="DialogSystem" type="CanvasLayer"]
 process_mode = 3
@@ -56,10 +106,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -391.0
+offset_left = -380.0
 offset_top = -85.0
 offset_right = -8.0
-offset_bottom = -11.0
+offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_dida2")
@@ -77,11 +127,47 @@ text = "Example [b]Text[/b]!!!
 fit_content = true
 scroll_active = false
 
-[node name="Label" type="Label" parent="DialogUI"]
+[node name="NameLabel" type="Label" parent="DialogUI"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 157.0
-offset_right = 130.0
-offset_bottom = 180.0
-text = "NAME
+offset_left = 100.0
+offset_top = 167.0
+offset_right = 140.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0.894118, 0.862745, 0.796078, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_0y7b1")
+text = "NAME"
+
+[node name="PortraitSprite" type="Sprite2D" parent="DialogUI"]
+position = Vector2(50, 196)
+texture = ExtResource("5_r7wqo")
+hframes = 4
+
+[node name="Timer" type="Timer" parent="DialogUI"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DialogUI"]
+
+[node name="DialogProgressIndicator" type="PanelContainer" parent="DialogUI"]
+self_modulate = Color(0.207843, 0.513726, 0.345098, 1)
+layout_mode = 0
+offset_left = 435.0
+offset_top = 248.0
+offset_right = 475.0
+offset_bottom = 264.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_la4gc")
+
+[node name="Label" type="Label" parent="DialogUI/DialogProgressIndicator"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_jxso7")
+text = "NEXT
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogUI/DialogProgressIndicator"]
+libraries = {
+"": SubResource("AnimationLibrary_w3x7o")
+}
+autoplay = "default"
