@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCResource" load_steps=3 format=3 uid="uid://bsnrj247ys3fp"]
+
+[ext_resource type="Script" path="res://npc/scripts/npc_resource.gd" id="1_4m02v"]
+[ext_resource type="Texture2D" uid="uid://cl4cvv4vydwgq" path="res://npc/sprites/portraits/hero_portrait.png" id="1_wvf1s"]
+
+[resource]
+script = ExtResource("1_4m02v")
+npc_name = "Herbert"
+portrait = ExtResource("1_wvf1s")
+dialog_audio_pitch = ""
