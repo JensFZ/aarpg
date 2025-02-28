@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://owi37id3qenn"]
+[gd_scene load_steps=16 format=3 uid="uid://owi37id3qenn"]
 
 [ext_resource type="Script" path="res://GUI/dialog_system/scripts/dialog_system.gd" id="1_qgvc6"]
 [ext_resource type="Texture2D" uid="uid://cojk8at8ahy5b" path="res://GUI/dialog_system/sprites/text-bubble.png" id="2_fcn8u"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bannibqn31ou4" path="res://GUI/fonts/Abaddon Bold.ttf" id="4_0y7b1"]
 [ext_resource type="Texture2D" uid="uid://cihh0pw8wvmlo" path="res://npc/sprites/portraits/npc_portrait_01.png" id="5_r7wqo"]
 [ext_resource type="AudioStream" uid="uid://xvrk6844x0ai" path="res://GUI/dialog_system/audio/voice_blip.wav" id="6_5xdo4"]
+[ext_resource type="Script" path="res://GUI/dialog_system/scripts/dialog_portrait.gd" id="6_bse0o"]
 [ext_resource type="FontFile" uid="uid://6vi5xc5fcj5i" path="res://GUI/fonts/m5x7.ttf" id="6_jxso7"]
 
 [sub_resource type="Gradient" id="Gradient_niw4e"]
@@ -145,6 +146,7 @@ text = "NAME"
 position = Vector2(50, 196)
 texture = ExtResource("5_r7wqo")
 hframes = 4
+script = ExtResource("6_bse0o")
 
 [node name="Timer" type="Timer" parent="DialogUI"]
 one_shot = true

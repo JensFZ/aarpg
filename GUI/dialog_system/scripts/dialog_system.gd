@@ -121,6 +121,7 @@ func _on_timer_timeout() -> void:
 	content.visible_characters += 1
 	
 	if content.visible_characters <= text_length:
+		letter_added.emit( plain_text[ content.visible_characters - 1 ] )
 		start_timer()
 	else:
 		show_dialog_button_indicator( true )
