@@ -155,6 +155,7 @@ max_polyphony = 6
 bus = &"SFX"
 
 [node name="DialogProgressIndicator" type="PanelContainer" parent="DialogUI"]
+visible = false
 self_modulate = Color(0.207843, 0.513726, 0.345098, 1)
 layout_mode = 0
 offset_left = 435.0
