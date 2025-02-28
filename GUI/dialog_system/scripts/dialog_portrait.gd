@@ -14,10 +14,14 @@ func _ready() -> void:
 		return
 	
 	DialogSystem.letter_added.connect( check_mouth_open )
+	blinker()
 
 
 func _set_blink( _v : bool ) -> void:
-	blink = _v
+	if blink != _v:
+		blink = _v
+		update_portrait()
+
 	pass
 
 func _set_open_mouth( _v : bool ) -> void:
@@ -32,7 +36,20 @@ func update_portrait() -> void:
 		frame = 2
 	else:
 		frame = 0
-	pass
+	
+	if blink == true:
+		frame += 1
+	
+	
+
+func blinker() -> void:
+	if blink == false:
+		await get_tree().create_timer( randf_range(0.1, 3)).timeout
+	else:
+		await get_tree().create_timer( 0.15 ).timeout
+	
+	blink = not blink
+	blinker()
 
 func check_mouth_open( _s : String ) -> void:
 	if 'aeiouy1234567890'.contains( _s ):
