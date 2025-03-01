@@ -64,7 +64,7 @@ text = "Hi Hero, is that [b]you[/b]?"
 
 [node name="DialogText2" type="Node" parent="NPC/DialogInteraction"]
 script = ExtResource("11_8rvn6")
-text = "[wave]jupp[/wave]"
+text = "[wave]Yes, it's me, Herbert.[/wave]"
 npc_info = ExtResource("12_vrhlm")
 
 [node name="DialogText3" type="Node" parent="NPC/DialogInteraction"]

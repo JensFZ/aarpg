@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://c1vdvkfo5t54" path="res://npc/sprites/npc_sprite.png" id="3_4edrc"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_tq4j1")
 npc_name = "Oren"
 sprite = ExtResource("3_4edrc")
 portrait = ExtResource("1_j3llg")
-dialog_audio_pitch = ""
+dialog_audio_pitch = 0.5

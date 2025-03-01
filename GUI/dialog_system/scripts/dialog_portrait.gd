@@ -4,7 +4,7 @@ class_name DialogPortrait extends Sprite2D
 var blink : bool = false : set = _set_blink
 var open_mouth : bool = false : set = _set_open_mouth
 var mouth_open_frames : int = 0
-
+var audio_pitch_base : float = 1.0
 
 @onready var audio: AudioStreamPlayer = $"../AudioStreamPlayer"
 
@@ -55,7 +55,7 @@ func check_mouth_open( _s : String ) -> void:
 	if 'aeiouy1234567890'.contains( _s ):
 		open_mouth = true
 		mouth_open_frames += 3
-		audio.pitch_scale = randf_range( 0.96, 1.04 )
+		audio.pitch_scale = randf_range( audio_pitch_base - 0.04, audio_pitch_base + 0.04 )
 		audio.play()
 		
 	elif '.,!?'.contains( _s ):
