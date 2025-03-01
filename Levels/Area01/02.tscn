@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://br1jenjmq1jtv"]
+[gd_scene load_steps=23 format=4 uid="uid://br1jenjmq1jtv"]
 
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_hg36x"]
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="2_3acv3"]
@@ -18,8 +18,10 @@
 [ext_resource type="Resource" uid="uid://bsnrj247ys3fp" path="res://Player/Hero.tres" id="12_vrhlm"]
 [ext_resource type="Texture2D" uid="uid://ce0yftd4ra3cr" path="res://npc/sprites/portraits/npc_portrait_02.png" id="15_22g3v"]
 [ext_resource type="Texture2D" uid="uid://871d0m0uvc5a" path="res://npc/sprites/npc_sprite_02.png" id="16_o6xvu"]
+[ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="19_kc5yf"]
+[ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="20_lmh8n"]
 
-[sub_resource type="Resource" id="Resource_x735m"]
+[sub_resource type="Resource" id="Resource_1ysmx"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Oren"
@@ -27,7 +29,7 @@ sprite = ExtResource("10_137ja")
 portrait = ExtResource("8_ki0vg")
 dialog_audio_pitch = 0.5
 
-[sub_resource type="Resource" id="Resource_ykjjh"]
+[sub_resource type="Resource" id="Resource_efhyu"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Nero"
@@ -72,7 +74,7 @@ side = 2
 
 [node name="NPC" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(162, 214)
-npc_resource = SubResource("Resource_x735m")
+npc_resource = SubResource("Resource_1ysmx")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
 
@@ -93,7 +95,7 @@ text = "Nice Bro!"
 
 [node name="NPC2" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(437, 139)
-npc_resource = SubResource("Resource_ykjjh")
+npc_resource = SubResource("Resource_efhyu")
 
 [node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("10_ffsb8")]
 
@@ -119,3 +121,12 @@ position = Vector2(-86, -61)
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction"]
 script = ExtResource("11_8rvn6")
 text = "Hi! How's Herbert?"
+
+[node name="DialogChoice" type="Node" parent="NPC2/DialogInteraction"]
+script = ExtResource("19_kc5yf")
+
+[node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
+script = ExtResource("20_lmh8n")
+
+[node name="DialogBranch2" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
+script = ExtResource("20_lmh8n")
