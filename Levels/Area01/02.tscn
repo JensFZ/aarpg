@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://br1jenjmq1jtv"]
+[gd_scene load_steps=19 format=4 uid="uid://br1jenjmq1jtv"]
 
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_hg36x"]
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="2_3acv3"]
@@ -7,13 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://b6s5u84mnd4je" path="res://Props/Plants/plant.tscn" id="4_y8ky1"]
 [ext_resource type="PackedScene" uid="uid://dehwrcusvnp" path="res://Levels/level_transition.tscn" id="5_jh4r0"]
 [ext_resource type="PackedScene" uid="uid://d3ewuxdjc6et0" path="res://npc/npc.tscn" id="7_six1j"]
-[ext_resource type="Resource" uid="uid://8ntrbdixasxy" path="res://npc/00_npcs/npc01.tres" id="8_wafv8"]
+[ext_resource type="Texture2D" uid="uid://cihh0pw8wvmlo" path="res://npc/sprites/portraits/npc_portrait_01.png" id="8_ki0vg"]
 [ext_resource type="PackedScene" uid="uid://hyaqeak3vc8l" path="res://npc/npc_behavior_wander.tscn" id="8_yt01q"]
+[ext_resource type="Script" path="res://npc/scripts/npc_resource.gd" id="9_kn5m5"]
 [ext_resource type="PackedScene" uid="uid://cm8nlrdqvhu1x" path="res://Interactables/dialog/dialog_interaction.tscn" id="10_6y6w1"]
+[ext_resource type="Texture2D" uid="uid://c1vdvkfo5t54" path="res://npc/sprites/npc_sprite.png" id="10_137ja"]
 [ext_resource type="PackedScene" uid="uid://c7ffp0y06cquc" path="res://npc/npc_behavior_patrol.tscn" id="10_ffsb8"]
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_text.gd" id="11_8rvn6"]
 [ext_resource type="PackedScene" uid="uid://dv4fjjhhids6u" path="res://npc/patrol_location.tscn" id="11_drvua"]
 [ext_resource type="Resource" uid="uid://bsnrj247ys3fp" path="res://Player/Hero.tres" id="12_vrhlm"]
+[ext_resource type="Resource" uid="uid://22udrgyuytvx" path="res://npc/00_npcs/npc02.tres" id="15_e35ht"]
+
+[sub_resource type="Resource" id="Resource_bngi0"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Oren"
+sprite = ExtResource("10_137ja")
+portrait = ExtResource("8_ki0vg")
+dialog_audio_pitch = 0.5
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_hg36x")
@@ -52,7 +63,7 @@ side = 2
 
 [node name="NPC" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(162, 214)
-npc_resource = ExtResource("8_wafv8")
+npc_resource = SubResource("Resource_bngi0")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
 
@@ -73,6 +84,7 @@ text = "Nice Bro!"
 
 [node name="NPC2" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(437, 139)
+npc_resource = ExtResource("15_e35ht")
 
 [node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("10_ffsb8")]
 
@@ -92,3 +104,9 @@ wait_time = 1.0
 [node name="PatrolLocation3" parent="NPC2/NpcBehaviorPatrol" instance=ExtResource("11_drvua")]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(-86, -61)
+
+[node name="DialogInteraction" parent="NPC2" instance=ExtResource("10_6y6w1")]
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction"]
+script = ExtResource("11_8rvn6")
+text = "Hi! How's Herbert?"
