@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://br1jenjmq1jtv"]
+[gd_scene load_steps=29 format=4 uid="uid://br1jenjmq1jtv"]
 
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_hg36x"]
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="2_3acv3"]
@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="19_kc5yf"]
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="20_lmh8n"]
 
-[sub_resource type="Resource" id="Resource_b8vv1"]
+[sub_resource type="Resource" id="Resource_ppmy0"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Oren"
@@ -37,7 +37,7 @@ sprite = ExtResource("10_137ja")
 portrait = ExtResource("8_ki0vg")
 dialog_audio_pitch = 0.5
 
-[sub_resource type="Resource" id="Resource_v6mqh"]
+[sub_resource type="Resource" id="Resource_ylc5p"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Nero"
@@ -70,6 +70,14 @@ portrait = ExtResource("15_22g3v")
 dialog_audio_pitch = 1.34
 
 [sub_resource type="Resource" id="Resource_mli0l"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Nero"
+sprite = ExtResource("16_o6xvu")
+portrait = ExtResource("15_22g3v")
+dialog_audio_pitch = 1.34
+
+[sub_resource type="Resource" id="Resource_v6mqh"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Nero"
@@ -114,7 +122,7 @@ side = 2
 
 [node name="NPC" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(162, 214)
-npc_resource = SubResource("Resource_b8vv1")
+npc_resource = SubResource("Resource_ppmy0")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
 
@@ -137,7 +145,7 @@ npc_info = SubResource("Resource_os8vp")
 
 [node name="NPC2" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(437, 139)
-npc_resource = SubResource("Resource_v6mqh")
+npc_resource = SubResource("Resource_ylc5p")
 
 [node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("10_ffsb8")]
 
