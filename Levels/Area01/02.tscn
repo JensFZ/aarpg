@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://br1jenjmq1jtv"]
+[gd_scene load_steps=28 format=4 uid="uid://br1jenjmq1jtv"]
 
 [ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_hg36x"]
 [ext_resource type="PackedScene" uid="uid://cxw7ekxppru0d" path="res://Tile Maps/grass-01.tscn" id="2_3acv3"]
@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="19_kc5yf"]
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="20_lmh8n"]
 
-[sub_resource type="Resource" id="Resource_c551o"]
+[sub_resource type="Resource" id="Resource_b8vv1"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Oren"
@@ -29,7 +29,47 @@ sprite = ExtResource("10_137ja")
 portrait = ExtResource("8_ki0vg")
 dialog_audio_pitch = 0.5
 
-[sub_resource type="Resource" id="Resource_lw0od"]
+[sub_resource type="Resource" id="Resource_os8vp"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Oren"
+sprite = ExtResource("10_137ja")
+portrait = ExtResource("8_ki0vg")
+dialog_audio_pitch = 0.5
+
+[sub_resource type="Resource" id="Resource_v6mqh"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Nero"
+sprite = ExtResource("16_o6xvu")
+portrait = ExtResource("15_22g3v")
+dialog_audio_pitch = 1.34
+
+[sub_resource type="Resource" id="Resource_lnyvj"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Nero"
+sprite = ExtResource("16_o6xvu")
+portrait = ExtResource("15_22g3v")
+dialog_audio_pitch = 1.34
+
+[sub_resource type="Resource" id="Resource_2qs1g"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Nero"
+sprite = ExtResource("16_o6xvu")
+portrait = ExtResource("15_22g3v")
+dialog_audio_pitch = 1.34
+
+[sub_resource type="Resource" id="Resource_aqxr5"]
+resource_local_to_scene = true
+script = ExtResource("9_kn5m5")
+npc_name = "Nero"
+sprite = ExtResource("16_o6xvu")
+portrait = ExtResource("15_22g3v")
+dialog_audio_pitch = 1.34
+
+[sub_resource type="Resource" id="Resource_mli0l"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Nero"
@@ -74,7 +114,7 @@ side = 2
 
 [node name="NPC" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(162, 214)
-npc_resource = SubResource("Resource_c551o")
+npc_resource = SubResource("Resource_b8vv1")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
 
@@ -83,6 +123,7 @@ npc_resource = SubResource("Resource_c551o")
 [node name="DialogText" type="Node" parent="NPC/DialogInteraction"]
 script = ExtResource("11_8rvn6")
 text = "Hi Hero, is that [b]you[/b]?"
+npc_info = SubResource("Resource_os8vp")
 
 [node name="DialogText2" type="Node" parent="NPC/DialogInteraction"]
 script = ExtResource("11_8rvn6")
@@ -92,10 +133,11 @@ npc_info = ExtResource("12_vrhlm")
 [node name="DialogText3" type="Node" parent="NPC/DialogInteraction"]
 script = ExtResource("11_8rvn6")
 text = "Nice Bro!"
+npc_info = SubResource("Resource_os8vp")
 
 [node name="NPC2" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(437, 139)
-npc_resource = SubResource("Resource_lw0od")
+npc_resource = SubResource("Resource_v6mqh")
 
 [node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("10_ffsb8")]
 
@@ -122,27 +164,34 @@ position = Vector2(-86, -61)
 script = ExtResource("11_8rvn6")
 text = "Yo Herbert.
 Will you help retrieve my magical flute from the dungeon?"
+npc_info = SubResource("Resource_lnyvj")
 
 [node name="DialogChoice" type="Node" parent="NPC2/DialogInteraction"]
 script = ExtResource("19_kc5yf")
+npc_info = SubResource("Resource_2qs1g")
 
 [node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
 script = ExtResource("20_lmh8n")
-text = "Count on it"
+text = "Count on it!"
+npc_info = SubResource("Resource_aqxr5")
 
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
 script = ExtResource("11_8rvn6")
 text = "Thank you Herbert!
 You are a true specimen!"
+npc_info = SubResource("Resource_mli0l")
 
 [node name="DialogText2" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
 script = ExtResource("11_8rvn6")
 text = "oh, and be careful of the evil wizard!"
+npc_info = SubResource("Resource_mli0l")
 
 [node name="DialogBranch2" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
 script = ExtResource("20_lmh8n")
 text = "No!"
+npc_info = SubResource("Resource_v6mqh")
 
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch2"]
 script = ExtResource("11_8rvn6")
 text = "Damn!"
+npc_info = SubResource("Resource_mli0l")
