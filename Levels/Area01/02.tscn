@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="19_kc5yf"]
 [ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="20_lmh8n"]
 
-[sub_resource type="Resource" id="Resource_1ysmx"]
+[sub_resource type="Resource" id="Resource_c551o"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Oren"
@@ -29,7 +29,7 @@ sprite = ExtResource("10_137ja")
 portrait = ExtResource("8_ki0vg")
 dialog_audio_pitch = 0.5
 
-[sub_resource type="Resource" id="Resource_efhyu"]
+[sub_resource type="Resource" id="Resource_lw0od"]
 resource_local_to_scene = true
 script = ExtResource("9_kn5m5")
 npc_name = "Nero"
@@ -74,7 +74,7 @@ side = 2
 
 [node name="NPC" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(162, 214)
-npc_resource = SubResource("Resource_1ysmx")
+npc_resource = SubResource("Resource_c551o")
 
 [node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("8_yt01q")]
 
@@ -95,7 +95,7 @@ text = "Nice Bro!"
 
 [node name="NPC2" parent="." instance=ExtResource("7_six1j")]
 position = Vector2(437, 139)
-npc_resource = SubResource("Resource_efhyu")
+npc_resource = SubResource("Resource_lw0od")
 
 [node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("10_ffsb8")]
 
@@ -120,13 +120,29 @@ position = Vector2(-86, -61)
 
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction"]
 script = ExtResource("11_8rvn6")
-text = "Hi! How's Herbert?"
+text = "Yo Herbert.
+Will you help retrieve my magical flute from the dungeon?"
 
 [node name="DialogChoice" type="Node" parent="NPC2/DialogInteraction"]
 script = ExtResource("19_kc5yf")
 
 [node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
 script = ExtResource("20_lmh8n")
+text = "Count on it"
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
+script = ExtResource("11_8rvn6")
+text = "Thank you Herbert!
+You are a true specimen!"
+
+[node name="DialogText2" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
+script = ExtResource("11_8rvn6")
+text = "oh, and be careful of the evil wizard!"
 
 [node name="DialogBranch2" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
 script = ExtResource("20_lmh8n")
+text = "No!"
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch2"]
+script = ExtResource("11_8rvn6")
+text = "Damn!"

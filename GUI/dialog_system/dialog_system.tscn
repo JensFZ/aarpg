@@ -79,7 +79,7 @@ _data = {
 
 [node name="DialogSystem" type="CanvasLayer"]
 process_mode = 3
-layer = 0
+layer = 3
 script = ExtResource("1_qgvc6")
 
 [node name="DialogUI" type="Control" parent="."]
@@ -200,24 +200,19 @@ alignment = 1
 [node name="Button" type="Button" parent="DialogUI/VBoxContainer"]
 layout_mode = 2
 text = "Choice 1..."
-alignment = 0
 
 [node name="Button2" type="Button" parent="DialogUI/VBoxContainer"]
 layout_mode = 2
 text = "Choice 1..."
-alignment = 0
 
 [node name="Button3" type="Button" parent="DialogUI/VBoxContainer"]
 layout_mode = 2
 text = "Choice 1..."
-alignment = 0
 
 [node name="Button4" type="Button" parent="DialogUI/VBoxContainer"]
 layout_mode = 2
 text = "Choice 1..."
-alignment = 0
 
 [node name="Button5" type="Button" parent="DialogUI/VBoxContainer"]
 layout_mode = 2
 text = "Choice 1..."
-alignment = 0
