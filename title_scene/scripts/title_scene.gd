@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func setup_title_screen() -> void:
-	
+	$CanvasLayer/SplashScene.queue_free()
 	AudioManager.play_music( music )
 	button_new.pressed.connect( start_game )
 	button_continue.pressed.connect( continue_game)

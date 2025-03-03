@@ -134,6 +134,8 @@ text = "continue
 "
 
 [node name="SplashScene" parent="CanvasLayer" instance=ExtResource("8_pb1lk")]
+offset_right = 5.0
+offset_bottom = 10.0
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_g65gl")]
 position = Vector2(241, 123)
